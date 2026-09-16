@@ -1,0 +1,56 @@
+body {
+    background-color: #666;
+    padding: 200px;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 4.5cm;
+    margin: auto;
+    font-weight: 1000;
+
+
+}
+
+span {
+    font-size: 2cm;
+
+    a {
+        color: blue;
+    }
+
+    cursor: default;
+}
+
+p {
+    font-size: 50px;
+}
+
+span:hover {
+
+    a {
+
+        border-radius: 16px;
+        transition: padding 5s;
+        padding: 300px;
+        font-size: 100px;
+        box-shadow: inset 36px 54px 17px 23px rgba(0, 0, 0, 0.36);
+        -webkit-box-shadow: inset 36px 54px 17px 23px rgba(0, 0, 0, 0.36);
+    }
+}
+
+div.box{
+background-color: aquamarine;
+display: flex;
+flex-direction: column;
+gap: 32px;
+box-sizing: border-box;
+justify-content: center;
+align-items: center;
+}
+
+div.content{
+    background-color: red;
+    display: flex;
+    justify-content: space-around;
+}
