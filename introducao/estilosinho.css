@@ -1,4 +1,4 @@
-body {
+/* body {
     background-color: #666;
     padding: 200px;
 }
@@ -40,7 +40,7 @@ span:hover {
 }
 
 div.box{
-background-color: aquamarine;
+background-color: #666;
 display: flex;
 flex-direction: column;
 gap: 32px;
@@ -50,7 +50,7 @@ align-items: center;
 }
 
 div.content{
-    background-color: red;
+    background-color : #666;
     display: flex;
     justify-content: space-around;
-}
+} */
