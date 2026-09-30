@@ -66,15 +66,15 @@ var posts = [
 
 //FUNCTIONS JS
 const feed = document.getElementById('feed')
-const botaoAberto = document.getElementById("botaoAbrir")
-const botaoFechado = document.getElementById("botaoFechar")
-const modal = document.getElementById("modalPost")
+const botaoAberto = document.getElementById("botaoAberto")
+const botaoFechado = document.getElementById("botaofecharmodal")
+const modal = document.getElementById("modalpost")
 
 botaoAberto.addEventListener("click", () => {
     modal.classList.remove("hidden")
 })
 
-botaoAberto.addEventListener("click", () => {
+botaoFechado.addEventListener("click", () => {
     modal.classList.add("hidden")
 })
 
