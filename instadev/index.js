@@ -78,6 +78,24 @@ botaoFechado.addEventListener("click", () => {
     modal.classList.add("hidden")
 })
 
+function curtirPost(idPost) {
+
+    var index = posts.findIndex(post => idPost === post.id);
+
+    posts[index].alreadyLike = !posts[index].alreadyLike;
+
+    if (posts[index].alreadyLike) {
+        posts[index].likes++;
+    } else {
+        posts[index].likes--;
+    }
+
+    carregarPosts();
+}
+
+
+
+
 function carregarPosts(){
 feed.innerHTML = "";
 
@@ -92,47 +110,87 @@ for(var j = 0; j < posts[i].comments.length; j++){
     commentsHTML += `
     
                         <p class="comment">
-                            <strong>${posts[i].comments[j].username[j]}</strong>
+                            <strong>${posts[i].comments[j].username}</strong>
                            ${posts[i].comments[j].text}
                         </p>
                     </div>
     `
 }
 
-article.innerHTML = ` <header class="post-header">
-                    <div class="post-usuario">
-                        <img
-                            src="${posts[i].usuario.imgperfil}">
-                        <div>
-                            <strong>${posts[i].usuario.user}</strong>
-                            <span>${posts[i].usuario.local}</span>
-                        </div>
-                    </div>
-                    <button class="more">•••</button>
-                </header>
-                <img
-                    src="${posts[i].img}">
-                    <div>
-                        <button>🔥</button>
-                        <button>💭</button>
-                        <button>➤</button>
-                    </div>
+article.innerHTML = `
 
-                    <button>➤</button>
-                </div>
+    <header class="post-header">
 
-                <div class="post-info">
-                    <p><strong>${posts[i].likes}</strong></p>
+        <div class="post-usuario">
 
-                    <div>
-                        <p><strong>${posts[i].usuario.user}</strong>${posts[i].legend}</p>
-                        <a href="#">VER COMENTARIOS</a>
+            <img src="${posts[i].usuario.imgperfil}">
 
-                   ${commentsHTML}
-<span class="post-date">Há 2 horas</span>
-                       
-                    </div>
-                </div>`;
+            <div>
+                <strong>${posts[i].usuario.user}</strong>
+                <span>${posts[i].usuario.local}</span>
+            </div>
+
+        </div>
+
+        <button class="more">•••</button>
+
+    </header>
+
+
+    <img
+        class="post-image"
+        src="${posts[i].img}"
+    >
+
+
+    <div class="post-actions">
+
+        <div>
+
+            <button
+                onclick="curtirPost(${posts[i].id})"
+                class="${posts[i].alreadyLike ? 'liked' : ''}"
+            >
+                ♥
+            </button>
+
+            <button>💭</button>
+
+            <button>➤</button>
+
+        </div>
+
+        <button>🔖</button>
+
+    </div>
+
+
+    <div class="post-info">
+
+        <p>
+            <strong>${posts[i].likes} curtidas</strong>
+        </p>
+
+        <div>
+
+            <p>
+                <strong>${posts[i].usuario.user}</strong>
+                ${posts[i].legend}
+            </p>
+
+            <a href="#">VER COMENTARIOS</a>
+
+            ${commentsHTML}
+
+            <span class="post-date">
+                Há 2 horas
+            </span>
+
+        </div>
+
+    </div>
+
+`;
 
                 feed.appendChild(article)
 }
