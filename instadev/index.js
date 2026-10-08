@@ -3,38 +3,38 @@
 var posts = [
     {
         id: 1,
-        usuario : {
+        usuario: {
 
-        user: 'ABCDE',
-        local: 'TJ/SC',
-        imgperfil: "https://media.discordapp.net/attachments/1524197927982071922/1554630064836968459/d4ea8b923c8221a8ca3ef392de6b0e23-1.jpg?backend=b2&ex=6abd9593&is=6abc4413&hm=86cc1005f0878812194a153b9198518a23549dff4f591907dee4dbcdad91126f&=&format=webp&width=724&height=1024",
+            user: 'ABCDE',
+            local: 'TJ/SC',
+            imgperfil: "https://media.discordapp.net/attachments/1524197927982071922/1554630064836968459/d4ea8b923c8221a8ca3ef392de6b0e23-1.jpg?backend=b2&ex=6abd9593&is=6abc4413&hm=86cc1005f0878812194a153b9198518a23549dff4f591907dee4dbcdad91126f&=&format=webp&width=724&height=1024",
         },
 
-        img : "https://media.discordapp.net/attachments/1524197927982071922/1554630064836968459/d4ea8b923c8221a8ca3ef392de6b0e23-1.jpg?backend=b2&ex=6abd9593&is=6abc4413&hm=86cc1005f0878812194a153b9198518a23549dff4f591907dee4dbcdad91126f&=&format=webp&width=724&height=1024",
-        likes : 60,
+        img: "https://media.discordapp.net/attachments/1524197927982071922/1554630064836968459/d4ea8b923c8221a8ca3ef392de6b0e23-1.jpg?backend=b2&ex=6abd9593&is=6abc4413&hm=86cc1005f0878812194a153b9198518a23549dff4f591907dee4dbcdad91126f&=&format=webp&width=724&height=1024",
+        likes: 60,
         legend: "meu 1 personagem de rpg",
-        alreadyLike : false,
-        data : "2026-09-28T20:41:00",
+        alreadyLike: false,
+        data: "2026-09-28T20:41:00",
         comments: [
             {
                 id: 1,
-                username : "Brok",
-                text:"Meu garoto",
-                data:"2026-09-28T20:46:00",
+                username: "Brok",
+                text: "Meu garoto",
+                data: "2026-09-28T20:46:00",
             },
 
-             {
+            {
                 id: 2,
-                username : "Chester",
-                text:"Salve",
-                data:"2026-09-28T20:48:00",
+                username: "Chester",
+                text: "Salve",
+                data: "2026-09-28T20:48:00",
             }
         ],
 
 
     },
 
-     {
+    {
         id: 2,
         usuario: {
             user: 'pedrinha',
@@ -53,7 +53,7 @@ var posts = [
                 text: "Bahhh que legal!!",
                 data: "2026-09-28T20:24:00"
             },
-             {
+            {
                 id: 2,
                 username: "pedrinhdasilva",
                 text: "Muito Legal!!",
@@ -93,31 +93,132 @@ function curtirPost(idPost) {
     carregarPosts();
 }
 
+function abrirComentarios(idPost) {
 
+    var post = posts.find(post => post.id === idPost);
 
+    var areaComentarios = document.getElementById(`comentarios-${idPost}`);
 
-function carregarPosts(){
-feed.innerHTML = "";
+    if (areaComentarios.innerHTML !== "") {
+        areaComentarios.innerHTML = "";
+        return;
+    }
 
+    var comentariosHTML = "";
 
+    for (var i = 0; i < post.comments.length; i++) {
 
+        comentariosHTML += `
+            <p>
+                <strong>${post.comments[i].username}</strong>
+                ${post.comments[i].text}
+            </p>
+        `;
+    }
 
-for(var i = 0; i < posts.length ; i++){
-var article = document.createElement("article")
+    comentariosHTML += `
+    <input 
+        type="text" 
+        id="inputComentario-${idPost}" 
+        placeholder="Adicione um comentário..."
+        onkeydown="if(event.key === 'Enter') adicionarComentario(${idPost})"
+    >
+`;
 
-var commentsHTML = "";
-for(var j = 0; j < posts[i].comments.length; j++){
-    commentsHTML += `
-    
-                        <p class="comment">
-                            <strong>${posts[i].comments[j].username}</strong>
-                           ${posts[i].comments[j].text}
-                        </p>
-                    </div>
-    `
+    areaComentarios.innerHTML = comentariosHTML;
 }
 
-article.innerHTML = `
+function adicionarComentario(idPost) {
+
+    var post = posts.find(post => post.id === idPost);
+
+    var input = document.getElementById(`inputComentario-${idPost}`);
+
+    var texto = input.value;
+
+    post.comments.push({
+        username: "Nico",
+        text: texto
+    });
+
+    var areaComentarios = document.getElementById(`comentarios-${idPost}`);
+
+    areaComentarios.innerHTML = "";
+
+    abrirComentarios(idPost);
+}
+
+function alternarTema() {
+
+    document.body.classList.toggle("dark-mode");
+
+    var botaoTema = document.getElementById("botaoTema");
+
+    if (document.body.classList.contains("dark-mode")) {
+        botaoTema.querySelector("span").textContent = "🌙";
+    } else {
+        botaoTema.querySelector("span").textContent = "⏾";
+    }
+
+}
+
+
+function adicionarPost() {
+
+    var imagem = document.getElementById("imgPost").value;
+    var legenda = document.getElementById("legendPost").value;
+
+    var novoPost = {
+
+        id: posts.length + 1,
+
+        usuario: {
+            user: "Nico",
+            local: "TJ/SC",
+            imgperfil: ""
+        },
+
+        img: imagem,
+        legend: legenda,
+
+        likes: 0,
+        alreadyLike: false,
+
+        data: new Date().toISOString(),
+
+        comments: []
+    };
+
+    posts.push(novoPost);
+
+    carregarPosts();
+    modal.classList.add("hidden");
+}
+
+
+
+function carregarPosts() {
+    feed.innerHTML = "";
+
+
+
+
+    for (var i = 0; i < posts.length; i++) {
+        var article = document.createElement("article")
+
+        var commentsHTML = "";
+        for (var j = 0; j < posts[i].comments.length; j++) {
+            commentsHTML += `
+    <p class="comment">
+        <strong>${posts[i].comments[j].username}</strong>
+        ${posts[i].comments[j].text}
+    </p>
+`
+        }
+
+
+
+        article.innerHTML = `
 
     <header class="post-header">
 
@@ -154,14 +255,20 @@ article.innerHTML = `
                 ♥
             </button>
 
-            <button>💭</button>
+            <button onclick="abrirComentarios(${posts[i].id})">
+                💭
+            </button>
 
             <button>➤</button>
 
         </div>
 
-        <button>🔖</button>
+        <button>✉</button>
 
+    </div>
+
+
+    <div class="comentarios" id="comentarios-${posts[i].id}">
     </div>
 
 
@@ -178,10 +285,6 @@ article.innerHTML = `
                 ${posts[i].legend}
             </p>
 
-            <a href="#">VER COMENTARIOS</a>
-
-            ${commentsHTML}
-
             <span class="post-date">
                 Há 2 horas
             </span>
@@ -192,10 +295,11 @@ article.innerHTML = `
 
 `;
 
-                feed.appendChild(article)
-}
+        feed.appendChild(article)
+    }
 }
 
 
 
 carregarPosts()
+

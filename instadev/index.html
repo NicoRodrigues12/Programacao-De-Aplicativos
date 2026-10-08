@@ -50,6 +50,12 @@
                 <span>○</span>
                 Perfil
             </a>
+
+            <button class="menu-item" id="botaoTema" onclick="alternarTema()">
+                <span>⏾</span>
+                Tema escuro
+            </button>
+
         </nav>
     </nav>
 
@@ -108,27 +114,27 @@
         </section>
 
         <section class="feed" id="feed">
-        
+
         </section>
 
     </main>
 
     <aside class="suggestions">
-       <div class="user">
+        <div class="user">
 
-    <img src="https://media.discordapp.net/attachments/1524197927982071922/1554630064836968459/d4ea8b923c8221a8ca3ef392de6b0e23-1.jpg?backend=b2&ex=6abd9593&is=6abc4413&hm=86cc1005f0878812194a153b9198518a23549dff4f591907dee4dbcdad91126f&=&format=webp&width=724&height=1024"
-        alt="">
+            <img src="https://media.discordapp.net/attachments/1524197927982071922/1554630064836968459/d4ea8b923c8221a8ca3ef392de6b0e23-1.jpg?backend=b2&ex=6abd9593&is=6abc4413&hm=86cc1005f0878812194a153b9198518a23549dff4f591907dee4dbcdad91126f&=&format=webp&width=724&height=1024"
+                alt="">
 
-    <div>
-        <strong>Oskar</strong>
-        <span>Hradecky</span>
-    </div>
+            <div>
+                <strong>Oskar</strong>
+                <span>Hradecky</span>
+            </div>
 
-    
 
-    <a href="#">sair</a>
 
-</div>
+            <a href="#">sair</a>
+
+        </div>
 
         <div class="suggestion-title">
             <strong>Sugestões para você</strong>
@@ -141,39 +147,41 @@
             <div>
                 <strong>Renato Gorducho</strong>
                 <span>ABC</span>
-                
+
             </div>
             <a href="#">Seguir</a>
         </div>
     </aside>
 
-    
-<div class="modal hidden" id="modalpost">
-<div class ="modal-content">
 
-    <div class ="modal-header">
-<h2>NOVA PUBLICAÇÃO</h2>
+    <div class="modal hidden" id="modalpost">
+        <div class="modal-content">
 
-<button id="botaofecharmodal">
-    
-    X
+            <div class="modal-header">
+                <h2>NOVA PUBLICAÇÃO</h2>
 
-</button>
+                <button id="botaofecharmodal">
+
+                    X
+
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <label for="imgPost">URL da imagem</label>
+                <input type="text" id="imgPost" placeholder="https://">
+
+                <label for="legendPost">Legenda</label>
+                <textarea id="legendPost" placeholder="Digita essa bomba ai"></textarea>
+                <button class="botaoPublicar" id="botaoPublicar" onclick="adicionarPost()">
+                    PUBLICAR
+                </button>
+
+
+            </div>
+        </div>
     </div>
-
-    <div class ="modal-body">
-
-<label for="imgPost">URL da imagem</label>
-<input type="text" id="imgPost" placeholder="https://">
-
-<label for="legendPost">Legenda</label>
-<textarea  id="legendPost" placeholder="Digita essa bomba ai"></textarea>
-<button class="botaoPublicar" id="botaoPublicar">PUBLICAR</button>
-
-
-    </div>
-</div>
-</div>
 
     <script src="index.js"></script>
 </body>
