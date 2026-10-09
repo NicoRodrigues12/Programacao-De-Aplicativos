@@ -80,14 +80,14 @@ botaoFechado.addEventListener("click", () => {
 
 function curtirPost(idPost) {
 
-    var index = posts.findIndex(post => idPost === post.id);
+    var index = posts.findIndex(post => idPost === post.id)
 
-    posts[index].alreadyLike = !posts[index].alreadyLike;
+    posts[index].alreadyLike = !posts[index].alreadyLike
 
     if (posts[index].alreadyLike) {
-        posts[index].likes++;
+        posts[index].likes++
     } else {
-        posts[index].likes--;
+        posts[index].likes--
     }
 
     carregarPosts();
@@ -95,16 +95,16 @@ function curtirPost(idPost) {
 
 function abrirComentarios(idPost) {
 
-    var post = posts.find(post => post.id === idPost);
+    var post = posts.find(post => post.id === idPost)
 
-    var areaComentarios = document.getElementById(`comentarios-${idPost}`);
+    var areaComentarios = document.getElementById(`comentarios-${idPost}`)
 
     if (areaComentarios.innerHTML !== "") {
-        areaComentarios.innerHTML = "";
+        areaComentarios.innerHTML = ""
         return;
     }
 
-    var comentariosHTML = "";
+    var comentariosHTML = ""
 
     for (var i = 0; i < post.comments.length; i++) {
 
@@ -113,7 +113,7 @@ function abrirComentarios(idPost) {
                 <strong>${post.comments[i].username}</strong>
                 ${post.comments[i].text}
             </p>
-        `;
+        `
     }
 
     comentariosHTML += `
@@ -125,27 +125,27 @@ function abrirComentarios(idPost) {
     >
 `;
 
-    areaComentarios.innerHTML = comentariosHTML;
+    areaComentarios.innerHTML = comentariosHTML
 }
 
 function adicionarComentario(idPost) {
 
-    var post = posts.find(post => post.id === idPost);
+    var post = posts.find(post => post.id === idPost)
 
-    var input = document.getElementById(`inputComentario-${idPost}`);
+    var input = document.getElementById(`inputComentario-${idPost}`)
 
-    var texto = input.value;
+    var texto = input.value
 
     post.comments.push({
         username: "Nico",
         text: texto
     });
 
-    var areaComentarios = document.getElementById(`comentarios-${idPost}`);
+    var areaComentarios = document.getElementById(`comentarios-${idPost}`)
 
-    areaComentarios.innerHTML = "";
+    areaComentarios.innerHTML = ""
 
-    abrirComentarios(idPost);
+    abrirComentarios(idPost)
 }
 
 function alternarTema() {
@@ -155,9 +155,9 @@ function alternarTema() {
     var botaoTema = document.getElementById("botaoTema");
 
     if (document.body.classList.contains("dark-mode")) {
-        botaoTema.querySelector("span").textContent = "🌙";
+        botaoTema.querySelector("span").textContent = "🌙"
     } else {
-        botaoTema.querySelector("span").textContent = "⏾";
+        botaoTema.querySelector("span").textContent = "⏾"
     }
 
 }
@@ -165,8 +165,8 @@ function alternarTema() {
 
 function adicionarPost() {
 
-    var imagem = document.getElementById("imgPost").value;
-    var legenda = document.getElementById("legendPost").value;
+    var imagem = document.getElementById("imgPost").value
+    var legenda = document.getElementById("legendPost").value
 
     var novoPost = {
 
@@ -189,16 +189,16 @@ function adicionarPost() {
         comments: []
     };
 
-    posts.push(novoPost);
-
-    carregarPosts();
-    modal.classList.add("hidden");
+    posts.push(novoPost)
+    
+    carregarPosts()
+    modal.classList.add("hidden")
 }
 
 
 
 function carregarPosts() {
-    feed.innerHTML = "";
+    feed.innerHTML = ""
 
 
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+    <title>Lista de Tarefas</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"> </script>
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="header">
+
+            <div>
+                <h1>Minhas tarefas</h1>
+                <p>Organize seu dia e suas atividades</p>
+            </div>
+            <span class="material-symbols-outlined header-icon">
+                checklist
+            </span>
+
+
+
+        </header>
+
+
+        <div class="form-tarefa">
+            <input type="text" id="input-tarefa" placeholder="Digitaí">
+            <button type="button">
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+                <strong>adicionar</strong>
+
+            </button>
+        </div>
+
+        <nav class="filtros">
+            <button type="button" class="filtro ativo">Todas</button>
+            <button type="button" class="filtro ">Pendentes</button>
+            <button type="button" class="filtro ">Concluídos</button>
+        </nav>
+
+        <ul id="lista-tarefas" class="lista-tarefas">
+            <li class="tarefa">
+             <button class="botao-check" onclick="alternartarefa">
+                <span class="material-symbols-outlined">
+                    radio_button_unchecked
+                </span>
+</button>
+                <span class="tarefa-texto">
+                    Estudar C++
+                </span>
+
+                <button class="botao-excluir">
+<span>
+    <span class="material-symbols-outlined" onclick="excluirtarefa()">
+delete
+                </span>
+</span>
+
+
+                </button>
+            </li>
+        </ul>
+    </main>
+</body>
+
+</html>
